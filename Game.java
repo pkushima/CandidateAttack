@@ -9,6 +9,8 @@ public class Game
         StdDraw.setXscale(-1.0, 1.0);
         StdDraw.setYscale(-1.0, 1.0);
         
+        
+        
         // initialize new ArrayList
         ArrayList<Ball> balls = new ArrayList<Ball>();
         
@@ -16,7 +18,7 @@ public class Game
         int DIFFICULTY = 60;  // determines the difficulty level
         int SCALE = 1;
         int score = 0;
-       
+               
         while (true) 
         {               
             // check whether we should end the game
@@ -40,9 +42,10 @@ public class Game
                 count = 0;
             }
             
-            // draw background
+            // clear
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.filledSquare(0.0, 0.0, 1.0);
+            
             
             // generate balls at regular intervals based on the difficulty level
             if (count % DIFFICULTY == 0) 
