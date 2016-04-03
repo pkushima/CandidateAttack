@@ -1,10 +1,11 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.awt.Color;
+import java.io.*;
 
 public class Game 
 { 
-    public static void playGame()
+    public static void playGame(int[] scores)
     {
         StdDraw.setXscale(-1.0, 1.0);
         StdDraw.setYscale(-1.0, 1.0);
@@ -30,7 +31,10 @@ public class Game
                     {
                         balls.remove(balls.get(i));
                     }                   
-                    else gameOver(score);    // game ends if a non black ball is not touched              
+                    else 
+                    {
+                        gameOver(score, scores);    // game ends if a non black ball is not touched 
+                    }
                 }                
             }  
             
@@ -110,7 +114,10 @@ public class Game
                                 
                             }
                             else if (balls.get(i).returnColor() == StdDraw.MAGENTA) score += 2;
-                            else gameOver(score); // end game if black ball is touched
+                            else 
+                            {
+                                gameOver(score, scores); // end game if black ball is touched
+                            }
                             balls.remove(balls.get(i));  
                         }
                     } 
@@ -129,8 +136,32 @@ public class Game
         }
     }
     
-    public static void gameOver(int score) 
-    {        
+    public static void gameOver(int score, int[] scores) 
+    {                
+        String fileName = "HighScores.txt";
+        
+        try
+        {
+            FileWriter fileWriter = new FileWriter(fileName);
+            
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            
+            for (int i = 0; i < 10; i++)
+            {
+                bufferedWriter.write("" + scores[i]);
+                bufferedWriter.newLine();
+            }
+            
+            bufferedWriter.write("" + score);
+            
+            bufferedWriter.close();
+        }
+        
+        catch (IOException ex)
+        {
+            StdOut.println("Error writing file '" + fileName + "'");
+        }
+        
         // Game Over screen dimensions
         StdDraw.setXscale(0.0, 16.0);
         StdDraw.setYscale(0.0, 16.0);
@@ -156,7 +187,7 @@ public class Game
             if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 && 
                 StdDraw.mouseY() >= 4.0 && StdDraw.mouseY() <= 7.0) 
             {
-                playGame();               
+                playGame(scores);               
             }
             // if Main Menu button clicked, return to Main Menu
             else if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 
@@ -222,6 +253,57 @@ public class Game
     public static void main(String[] args)
     {       
         int[] scores = new int[10];
+        int lastScore = 0;
+        
+        // read high scores from txt file
+        String fileName = "HighScores.txt";
+        
+        try
+        {
+            FileReader fileReader = new FileReader(fileName);
+            
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            
+            for (int i = 0; i < 10; i++)
+            {
+                scores[i] = Integer.parseInt(bufferedReader.readLine());
+            }
+            
+            lastScore = Integer.parseInt(bufferedReader.readLine());
+            
+            bufferedReader.close();
+        }
+        
+        catch (FileNotFoundException ex)
+        {
+            StdOut.println("Unable to open file '" + fileName + "'");
+        }
+        catch (IOException ex)
+        {
+            StdOut.println("Error reading file '" + fileName + "'");
+        }
+        
+        int temp1 = 0;
+        int temp2 = 0;
+        
+        // comparing last score (11th entry in file) to the 10 scores in array
+        for (int i = 0; i < 10; i++)
+        {
+            if (lastScore > scores[i])
+            {
+                temp1 = scores[i];
+                
+                for (int j = i; j < 9; j++)
+                {
+                    temp2 = scores[j + 1];
+                    scores[j + 1] = temp1;
+                    temp1 = temp2; 
+                }
+                
+                scores[i] = lastScore;
+                break;
+            }
+        }
         
         while (true)
         {
@@ -255,7 +337,7 @@ public class Game
                     else if (StdDraw.mouseX() >= 4.0 && StdDraw.mouseX() <= 12.0 &&
                              StdDraw.mouseY() >= 9.0 && StdDraw.mouseY() <= 11.0) 
                     {                                        
-                        playGame();
+                        playGame(scores);
                     }
                     // if High Scores clicked
                     else if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 &&
