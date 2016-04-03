@@ -11,8 +11,7 @@ public class Game
         StdDraw.setYscale(0.0, 16.0);
         
         // Main Menu Background
-        StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.filledSquare(8.0, 8.0, 8.0);
+        StdDraw.picture(8.0, 8.0, "background final");
         
         // Main Menu Title
         StdDraw.setPenColor(StdDraw.MAGENTA);
