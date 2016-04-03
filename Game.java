@@ -42,11 +42,8 @@ public class Game
                 count = 0;
             }
             
-<<<<<<< HEAD
-            // draw background
-=======
+
             //draw background
->>>>>>> origin/master
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.filledSquare(0.0, 0.0, 1.0);
             
@@ -143,31 +140,26 @@ public class Game
                 
         // Main Menu High Scores
         StdDraw.picture(8.0, 8.0, "blanksquare.png");
+        StdDraw.text(8.0, 8.0, "Score: " + score);
         
         // Main Menu Retry
         StdDraw.picture(8.0, 4.0, "retry.png");
         
         // Main Menu Retry
         StdDraw.picture(8.0, 1.0, "menu.png");        
-        
-        /* // Main Menu Score
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(8.0, 7.0, 2.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 7.0, "Score: " + score); */
                
         // Button Interactions
         if (StdDraw.mousePressed()) 
-        {
+        {       
             // if Retry clicked, initiate new Game
-            if (StdDraw.mouseX() >= 6.0 && StdDraw.mouseX() <= 10.0 && StdDraw.mouseY() >= 2.0 && StdDraw.mouseY() <= 4.0) 
+            if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 && 
+                StdDraw.mouseY() >= 4.0 && StdDraw.mouseY() <= 7.0) 
             {
-                playGame();
-                //break;
+                playGame();               
             }
             // if Main Menu button clicked, return to Main Menu
-            else if (StdDraw.mouseX() >= 6.5 && StdDraw.mouseX() <= 9.5 
-                         && StdDraw.mouseY() >= 0.0 && StdDraw.mouseY() <=  1.0) 
+            else if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 
+                         && StdDraw.mouseY() >= 0.0 && StdDraw.mouseY() <=  3.0) 
             {
                 return;     // work on this    
             }           
