@@ -7,6 +7,8 @@ public class Game
 { 
     public static void playGame(int[] scores)
     {
+        
+        //StdAudio.loop("UpbeatFunk.wav"); 
         StdDraw.setXscale(-1.0, 1.0);
         StdDraw.setYscale(-1.0, 1.0);
         
@@ -252,6 +254,7 @@ public class Game
     
     public static void main(String[] args)
     {       
+        
         int[] scores = new int[10];
         int lastScore = 0;
         
@@ -304,6 +307,28 @@ public class Game
                 break;
             }
         }
+       
+        try
+        {
+            FileWriter fileWriter = new FileWriter(fileName);
+            
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            
+            for (int i = 0; i < 10; i++)
+            {
+                bufferedWriter.write("" + scores[i]);
+                bufferedWriter.newLine();
+            }
+            
+            bufferedWriter.write("" + lastScore);
+            
+            bufferedWriter.close();
+        }
+        
+        catch (IOException ex)
+        {
+            StdOut.println("Error writing file '" + fileName + "'");
+        }
         
         while (true)
         {
@@ -349,7 +374,7 @@ public class Game
                 }
                 
             }
-                //StdDraw.show(0);      
+                     
         }
     }
 }
