@@ -2,7 +2,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.awt.Color;
 
-public class Ball  // Candidattack teshchange
+public class Ball  // Ball game
 {
     private final double radius; // Ball radius
     private Point2D.Double p;  // Ball position
