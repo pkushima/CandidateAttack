@@ -147,8 +147,9 @@ public class Game
         
         // Main Menu Retry
         StdDraw.picture(8.0, 1.0, "menu.png");        
-               
+        
         // Button Interactions
+        
         if (StdDraw.mousePressed()) 
         {       
             // if Retry clicked, initiate new Game
@@ -164,9 +165,10 @@ public class Game
                 return;     // work on this    
             }           
         }
+        
     }
     
-    public static void highScores()
+    public static void highScores(int[] scores)
     {
         // High Score Dimensions
         StdDraw.setXscale(0.0, 16.0);
@@ -182,66 +184,91 @@ public class Game
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(8.0, 13.0, "High Scores");
         
+        StdDraw.setPenColor(StdDraw.GRAY);
+        StdDraw.filledRectangle(8.0, 6.0, 2.0, 5.5);
         
-        // create list of high scores        
+        // create list of high scores
+        StdDraw.setPenColor(StdDraw.BLACK);
         for (int i = 1; i <= 10; i++) 
         { 
-            StdDraw.setPenColor(StdDraw.GRAY);
-            StdDraw.filledRectangle(8.0, 11.0 - i , 2.0, 0.5);
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.text(8.0, 11.0, i + ": ");
+            StdDraw.text(7.0, 11.5 - i, i + ": ");
         }
-        
-        
+        for (int i = 0; i < 10; i++) 
+        { 
+            StdDraw.text(8.0, 10.5 - i, scores[i] + "");
+        }
+                
         // Return Button
         StdDraw.setPenColor(StdDraw.GRAY);
         StdDraw.filledRectangle(14.5, 0.5, 1.5, 0.5);
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(14.5, 0.5, "Back");
+        
+         while (true) 
+        {
+            if (StdDraw.mousePressed())
+            {
+                if (StdDraw.mouseX() >= 13.0 && StdDraw.mouseX() <= 16.0 &&
+                    StdDraw.mouseY() >= 0.0 && StdDraw.mouseY() <= 1.0)
+                {
+                    break;
+                }
+            }
+            
+         }
+        
     }
     
     public static void main(String[] args)
     {       
-        // Main Menu dimensions
-        StdDraw.setXscale(0.0, 16.0);
-        StdDraw.setYscale(0.0, 16.0);
+        int[] scores = new int[10];
         
-        // Main Menu Background        
-        StdDraw.picture(8.0, 8.0, "backgroundfinal.png");
-        
-        // Main Menu Play
-        StdDraw.picture(8.0, 10.0, "play.png");
-        
-        // Main Menu High Scores
-        StdDraw.picture(8.0, 6.0, "highscore.png");
-        
-        // Main Menu Exit
-        StdDraw.picture(8.0, 2.0, "exit.png");
-        
-        while (true) 
+        while (true)
         {
-            if (StdDraw.mousePressed())
+            // Main Menu dimensions
+            StdDraw.setXscale(0.0, 16.0);
+            StdDraw.setYscale(0.0, 16.0);
+            
+            // Main Menu Background        
+            StdDraw.picture(8.0, 8.0, "backgroundfinal.png");
+            
+            // Main Menu Play
+            StdDraw.picture(8.0, 10.0, "play.png");
+            
+            // Main Menu High Scores
+            StdDraw.picture(8.0, 6.0, "highscore.png");
+            
+            // Main Menu Exit
+            StdDraw.picture(8.0, 2.0, "exit.png");
+            
+            while (true) 
             {
-                //  if Exit clicked, exit the program
-                if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 &&
-                         StdDraw.mouseY() >= 1.5 && StdDraw.mouseY() <= 3.6) 
+                if (StdDraw.mousePressed())
                 {
-                    System.exit(0);
+                    //  if Exit clicked, exit the program
+                    if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 &&
+                        StdDraw.mouseY() >= 1.5 && StdDraw.mouseY() <= 3.6) 
+                    {
+                        System.exit(0);
+                    }
+                    // if Play clicked
+                    else if (StdDraw.mouseX() >= 4.0 && StdDraw.mouseX() <= 12.0 &&
+                             StdDraw.mouseY() >= 9.0 && StdDraw.mouseY() <= 11.0) 
+                    {                                        
+                        playGame();
+                    }
+                    // if High Scores clicked
+                    else if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 &&
+                             StdDraw.mouseY() >= 5.0 && StdDraw.mouseY() <= 7.0) 
+                    {
+                        highScores(scores);                        
+                    }
+                    break;
                 }
-                // if Play clicked
-                else if (StdDraw.mouseX() >= 4.0 && StdDraw.mouseX() <= 12.0 &&
-                         StdDraw.mouseY() >= 9.0 && StdDraw.mouseY() <= 11.0) 
-                {                                        
-                    playGame();
-                }
-                // if High Scores clicked
-                else if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 &&
-                         StdDraw.mouseY() >= 5.0 && StdDraw.mouseY() <= 7.0) 
-                {
-                    highScores();                        
-                }
+                
             }
-        }             
+                //StdDraw.show(0);      
+        }
     }
 }
 
