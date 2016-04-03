@@ -1,6 +1,6 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.awt.Color; // a
+import java.awt.Color;
 
 public class Ball  // Ball game
 {
@@ -89,7 +89,7 @@ public class Ball  // Ball game
         }
         else if (this.returnColor() == StdDraw.BLUE)
         {
-            if (this.tap >= 7) return true;
+            if (this.tap >= 8) return true;
         }
         return false;
     }
