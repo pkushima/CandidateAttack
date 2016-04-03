@@ -4,68 +4,6 @@ import java.awt.Color;
 
 public class Game 
 { 
-    public static void mainMenu() 
-    {                   
-        // Main Menu dimensions
-        StdDraw.setXscale(0.0, 16.0);
-        StdDraw.setYscale(0.0, 16.0);
-        
-        // Main Menu Background
-        StdDraw.picture(8.0, 8.0, "background final");
-        
-        // Main Menu Title
-        StdDraw.setPenColor(StdDraw.MAGENTA);
-        StdDraw.filledRectangle(8.0, 11.0, 4.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 11.0, "Main Menu");
-        
-        // Main Menu Play
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(8.0, 7.0, 2.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 7.0, "Play");
-        
-        // Main Menu High Scores
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(8.0, 3.0, 2.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 3.0, "High Score");
-        
-        // Main Menu Exit
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(14.5, 0.5, 1.5, 0.5);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(14.5, 0.5, "Exit");
-        
-        while (true) 
-        {
-            if (StdDraw.mousePressed())
-            {
-                //  Exit not clicked
-                if ((StdDraw.mouseX() >= 13.0 && StdDraw.mouseX() <= 16.0 
-                         && StdDraw.mouseY() >= 0.0 && StdDraw.mouseY() <=  1.0)) 
-                {
-                    System.exit(0);
-                }
-                
-                else if (StdDraw.mouseX() >= 6.0 && StdDraw.mouseX() <= 10.0) 
-                {
-                    // if Play clicked
-                    if (StdDraw.mouseY() >= 6.0 && StdDraw.mouseY() <= 8.0) 
-                    {                                            
-                        playGame();
-                        break;   
-                    }
-                    // if High Scores clicked
-                    else if (StdDraw.mouseY() >= 2.0 && StdDraw.mouseY() <= 4.0) 
-                    {
-                        System.out.println("High Scores");
-                    }
-                }
-            }  
-        }     
-    }
-    
     public static void playGame()
     {
         StdDraw.setXscale(-1.0, 1.0);
@@ -280,61 +218,46 @@ public class Game
         StdDraw.setXscale(0.0, 16.0);
         StdDraw.setYscale(0.0, 16.0);
         
-        // Main Menu Background
-        StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.filledSquare(8.0, 8.0, 8.0);
-        
-        // Main Menu Title
-        StdDraw.setPenColor(StdDraw.MAGENTA);
-        StdDraw.filledRectangle(8.0, 11.0, 4.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 11.0, "Main Menu");
+        // Main Menu Background        
+        StdDraw.picture(8.0, 8.0, "backgroundfinal.png");
         
         // Main Menu Play
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(8.0, 7.0, 2.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 7.0, "Play");
+        StdDraw.picture(8.0, 10.0, "play.png");
         
         // Main Menu High Scores
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(8.0, 3.0, 2.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 3.0, "High Score");
+        StdDraw.picture(8.0, 6.0, "highscore.png");
         
         // Main Menu Exit
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(14.5, 0.5, 1.5, 0.5);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(14.5, 0.5, "Exit");
+        StdDraw.picture(8.0, 2.0, "exit.png");
         
         while (true) 
         {
             if (StdDraw.mousePressed())
             {
-                //  Exit not clicked
-                if ((StdDraw.mouseX() >= 13.0 && StdDraw.mouseX() <= 16.0 
-                         && StdDraw.mouseY() >= 0.0 && StdDraw.mouseY() <=  1.0)) 
+                //  if Exit clicked, exit the program
+                if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 &&
+                         StdDraw.mouseY() >= 1.5 && StdDraw.mouseY() <= 3.6) 
                 {
                     System.exit(0);
                 }
-                
-                else if (StdDraw.mouseX() >= 6.0 && StdDraw.mouseX() <= 10.0) 
-                {
-                    // if Play clicked
-                    if (StdDraw.mouseY() >= 6.0 && StdDraw.mouseY() <= 8.0) 
-                    {                                            
-                        playGame();
-                    }
-                    // if High Scores clicked
-                    else if (StdDraw.mouseY() >= 2.0 && StdDraw.mouseY() <= 4.0) 
-                    {
-                        highScores();                        
-                    }
+                // if Play clicked
+                else if (StdDraw.mouseX() >= 4.0 && StdDraw.mouseX() <= 12.0 &&
+                         StdDraw.mouseY() >= 9.0 && StdDraw.mouseY() <= 11.0) 
+                {                                        
+                    playGame();
                 }
-            }             
-        }
+                // if High Scores clicked
+                else if (StdDraw.mouseX() >= 5.0 && StdDraw.mouseX() <= 11.0 &&
+                         StdDraw.mouseY() >= 5.0 && StdDraw.mouseY() <= 7.0) 
+                {
+                    highScores();                        
+                }
+            }
+        }             
     }
 }
+
+
+
 
 
