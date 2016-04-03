@@ -9,6 +9,8 @@ public class Game
         StdDraw.setXscale(-1.0, 1.0);
         StdDraw.setYscale(-1.0, 1.0);
         
+        
+        
         // initialize new ArrayList
         ArrayList<Ball> balls = new ArrayList<Ball>();
         
@@ -40,7 +42,7 @@ public class Game
                 count = 0;
             }
             
-            // draw background
+            //draw background
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.filledSquare(0.0, 0.0, 1.0);
             
