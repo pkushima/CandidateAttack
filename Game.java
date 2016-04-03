@@ -42,7 +42,7 @@ public class Game
                 count = 0;
             }
             
-            // clear
+            // draw background
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.filledSquare(0.0, 0.0, 1.0);
             
@@ -135,34 +135,24 @@ public class Game
         StdDraw.setXscale(0.0, 16.0);
         StdDraw.setYscale(0.0, 16.0);
         
-        // Game Over Background
-        StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.filledSquare(8.0, 8.0, 8.0);
+         // Game Over Background        
+        StdDraw.picture(8.0, 8.0, "gameover.png");
+                
+        // Main Menu High Scores
+        StdDraw.picture(8.0, 8.0, "blanksquare.png");
         
-        // Game Over Title
-        StdDraw.setPenColor(StdDraw.MAGENTA);
-        StdDraw.filledRectangle(8.0, 11.0, 4.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 11.0, "Game Over");
+        // Main Menu Retry
+        StdDraw.picture(8.0, 4.0, "retry.png");
         
-        // Main Menu Score
+        // Main Menu Retry
+        StdDraw.picture(8.0, 1.0, "menu.png");        
+        
+        /* // Main Menu Score
         StdDraw.setPenColor(StdDraw.GRAY);
         StdDraw.filledRectangle(8.0, 7.0, 2.0, 1.0);
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 7.0, "Score: " + score);
-        
-        // Retry
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(8.0, 3.0, 2.0, 1.0);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 3.0, "Retry");
-        
-        // Main Menu Button
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledRectangle(8.0, 0.5, 1.5, 0.5);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(8.0, 0.5, "Main Menu");
-        
+        StdDraw.text(8.0, 7.0, "Score: " + score); */
+               
         // Button Interactions
         if (StdDraw.mousePressed()) 
         {
